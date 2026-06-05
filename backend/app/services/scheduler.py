@@ -4,7 +4,7 @@ from app.services.github import get_overview
 from app.services.email import send_weekly_summary
 from app.database import SessionLocal
 from app.models.schemas import Snapshot
-import json
+from app.config import settings
 
 scheduler = AsyncIOScheduler()
 
