@@ -12,14 +12,27 @@ export default function HistoryChart({ history }) {
       <h2>Stars Over Time</h2>
       <ResponsiveContainer width="100%" height={220}>
         <LineChart data={data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#21262d" />
-          <XAxis dataKey="date" stroke="#8b949e" tick={{ fontSize: 11 }} />
-          <YAxis stroke="#8b949e" tick={{ fontSize: 11 }} />
+          <defs>
+            <linearGradient id="starsLine" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#7c8cff" />
+              <stop offset="100%" stopColor="#a78bfa" />
+            </linearGradient>
+          </defs>
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+          <XAxis dataKey="date" stroke="var(--muted)" tick={{ fontSize: 11 }} tickLine={false} axisLine={false} />
+          <YAxis stroke="var(--muted)" tick={{ fontSize: 11 }} tickLine={false} axisLine={false} />
           <Tooltip
-            contentStyle={{ background: '#161b22', border: '1px solid #30363d', borderRadius: 6 }}
-            itemStyle={{ color: '#e6edf3' }}
+            contentStyle={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 10, boxShadow: 'var(--shadow)' }}
+            itemStyle={{ color: 'var(--text)' }}
           />
-          <Line type="monotone" dataKey="stars" stroke="#58a6ff" strokeWidth={2} dot={false} />
+          <Line
+            type="monotone"
+            dataKey="stars"
+            stroke="url(#starsLine)"
+            strokeWidth={2.5}
+            dot={false}
+            activeDot={{ r: 5, fill: '#7c8cff' }}
+          />
         </LineChart>
       </ResponsiveContainer>
     </div>
