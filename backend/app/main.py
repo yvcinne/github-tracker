@@ -17,7 +17,7 @@ app = FastAPI(title="GitHub Analytics API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://your-app.vercel.app"],
+    allow_origins=["http://localhost:5173", "https://github-tracker-ochre.vercel.app"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
