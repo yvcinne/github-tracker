@@ -64,12 +64,17 @@ DATABASE_URL=sqlite+aiosqlite:///./analytics.db
 
 > Get a GitHub token at [github.com/settings/tokens](https://github.com/settings/tokens) — only needs `read:user` and `repo` scopes.
 
-Optional (for weekly email summaries):
+Optional — needed for **daily snapshots** and **weekly email summaries** (scheduled jobs run without user input):
 
 ```env
+GITHUB_USERNAME=your_github_username
 RESEND_API_KEY=your_resend_api_key
 EMAIL_TO=your@email.com
 ```
+
+- `GITHUB_USERNAME` — the account to snapshot daily and email about
+- `RESEND_API_KEY` — get one free at [resend.com](https://resend.com)
+- `EMAIL_TO` — where to send the Monday morning summary
 
 Start the backend — the database is created automatically on first run:
 

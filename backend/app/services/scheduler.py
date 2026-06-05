@@ -10,7 +10,9 @@ scheduler = AsyncIOScheduler()
 
 
 async def snapshot_job():
-    data = await get_overview()
+    if not settings.github_username:
+        return  # No default user configured, skip
+    data = await get_overview(settings.github_username)
     async with SessionLocal() as db:
         snapshot = Snapshot(
             total_repos=data["total_repos"],
@@ -26,7 +28,9 @@ async def snapshot_job():
 
 
 async def weekly_email_job():
-    data = await get_overview()
+    if not settings.github_username or not settings.resend_api_key:
+        return  # Not configured, skip
+    data = await get_overview(settings.github_username)
     send_weekly_summary(data)
 
 
